@@ -29,8 +29,19 @@ data "vsphere_host" "hosts" {
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
-### Build Standard vSwitches ###
+### Build Local Dictionary ###
+locals {
+  merged = flatten([
+    for host_key, host in var.cluster_hosts : [
+      for network_key, network in var.dcnm_networks : {
+        network_name = network["name"]
+        host_name  = host["name"]
+      }
+    ]
+  ])
+}
 
+### Build Standard vSwitches ###
 resource "vsphere_host_virtual_switch" "vswitch" {
   for_each      = var.cluster_hosts
 
@@ -39,4 +50,15 @@ resource "vsphere_host_virtual_switch" "vswitch" {
   network_adapters  = each.value["network_adapters"]
   active_nics       = each.value["active_nics"]
   standby_nics      = each.value["standby_nics"]
+}
+
+
+resource "vsphere_host_port_group" "pg" {
+  for_each      = toset(local.merged)
+
+  name                = each.value["network_name"]
+  host_system_id      = data.vsphere_host.hosts[each.value["host_name"]].id
+  virtual_switch_name = var.vcenter_std_switch_name
+
+  depends_on = [vsphere_host_virtual_switch.vswitch]
 }
