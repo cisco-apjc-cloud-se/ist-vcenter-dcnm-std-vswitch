@@ -32,7 +32,7 @@ data "vsphere_host" "hosts" {
 ### Build Local Dictionary ###
 locals {
   # total_index = count(var.cluster_hosts) * count(var.dcnm_networks)
-  merged = flatten([
+  flatlist = flatten([
     for host_key, host in var.cluster_hosts : [
       for network_key, network in var.dcnm_networks : {
         network_name = network["name"]
@@ -40,6 +40,7 @@ locals {
       }
     ]
   ])
+  merged = {for idx, val in local.flatlist: idx => val}
 }
 
 ### Build Standard vSwitches ###
