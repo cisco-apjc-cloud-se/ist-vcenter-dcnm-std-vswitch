@@ -34,9 +34,9 @@ data "vsphere_host" "hosts" {
 resource "vsphere_host_virtual_switch" "vswitch" {
   for_each      = var.cluster_hosts
 
-  name           = var.vcenter_std_switch_name
-  host_system_id = data.vsphere_host.hosts[$(each.value["name"])].id
-  network_adapters = []
-  # active_nics  = ["vmnic0"]
-  # standby_nics = ["vmnic1"]
+  name              = var.vcenter_std_switch_name
+  host_system_id    = data.vsphere_host.hosts[each.value["name"]].id
+  network_adapters  = []
+  active_nics       = []
+  standby_nics      = []
 }
