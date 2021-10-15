@@ -35,8 +35,9 @@ locals {
   flatlist = flatten([
     for host_key, host in var.cluster_hosts : [
       for network_key, network in var.dcnm_networks : {
-        network_name = network["name"]
-        host_name  = host["name"]
+        network_name  = network["name"]
+        host_name     = host["name"]
+        vlan_id       = network["vlan_id"]
       }
     ]
   ])
@@ -55,12 +56,13 @@ resource "vsphere_host_virtual_switch" "vswitch" {
 }
 
 
-# resource "vsphere_host_port_group" "pg" {
-#   for_each      = local.merged
-#
-#   name                = each.value["network_name"]
-#   host_system_id      = data.vsphere_host.hosts[each.value["host_name"]].id
-#   virtual_switch_name = var.vcenter_std_switch_name
-#
-#   depends_on = [vsphere_host_virtual_switch.vswitch]
-# }
+resource "vsphere_host_port_group" "pg" {
+  for_each      = local.merged
+
+  name                = each.value["network_name"]
+  host_system_id      = data.vsphere_host.hosts[each.value["host_name"]].id
+  virtual_switch_name = var.vcenter_std_switch_name
+  vlan_id             = each.value["vlan_id"]
+
+  depends_on = [vsphere_host_virtual_switch.vswitch]
+}
