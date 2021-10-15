@@ -29,14 +29,14 @@ data "vsphere_host" "hosts" {
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
-# ### Build Standard vSwitches ###
-#
-# resource "vsphere_host_virtual_switch" "vswitch" {
-#   for_each      = var.cluster_hosts
-#
-#   name              = var.vcenter_std_switch_name
-#   host_system_id    = data.vsphere_host.hosts[each.value["name"]].id
-#   network_adapters  = []
-#   active_nics       = []
-#   standby_nics      = []
-# }
+### Build Standard vSwitches ###
+
+resource "vsphere_host_virtual_switch" "vswitch" {
+  for_each      = var.cluster_hosts
+
+  name              = var.vcenter_std_switch_name
+  host_system_id    = data.vsphere_host.hosts[each.key].id
+  network_adapters  = []
+  active_nics       = []
+  standby_nics      = []
+}
