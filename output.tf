@@ -17,3 +17,8 @@ output "merged" {
   value = module.vcenter.merged
   sensitive = false
 }
+
+output "portgroups" {
+  value = module.vcenter.portgroups
+  sensitive = false
+}
