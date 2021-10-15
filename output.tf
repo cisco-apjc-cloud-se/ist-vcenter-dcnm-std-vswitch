@@ -12,3 +12,8 @@ output "hosts" {
   value = module.vcenter.hosts
   sensitive = false
 }
+
+output "merged" {
+  value = module.vcenter.merged
+  sensitive = false
+}
