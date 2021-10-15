@@ -114,4 +114,6 @@ resource "dcnm_network" "networks" {
       switch_ports = attachments.value["switch_ports"]
     }
   }
+
+  depends_on = [dcnm_interface.vpc]
 }
