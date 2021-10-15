@@ -36,7 +36,7 @@ resource "vsphere_host_virtual_switch" "vswitch" {
 
   name              = var.vcenter_std_switch_name
   host_system_id    = data.vsphere_host.hosts[each.key].id
-  network_adapters  = []
-  active_nics       = []
-  standby_nics      = []
+  network_adapters  = each.value['network_adapters']
+  active_nics       = each.value['active_nics']
+  standby_nics      = each.value['standby_nics']
 }

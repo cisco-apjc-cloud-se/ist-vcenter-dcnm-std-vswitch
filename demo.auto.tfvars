@@ -64,20 +64,28 @@ vcenter_std_switch_name = "IST-STDVSW"
 ### Which hosts make up the cluster ###
 cluster_hosts = {
   host1 = {
-    name = "100.64.62.21"
-    ip_addr = "100.64.62.21"
+    name              = "100.64.62.21"
+    network_adapters  = []
+    active_nics       = []
+    standby_nics      = []
   },
   host2 = {
-    name = "100.64.62.22"
-    ip_addr = "100.64.62.22"
+    name              = "100.64.62.22"
+    network_adapters  = []
+    active_nics       = []
+    standby_nics      = []
   },
   host3 = {
-    name = "100.64.62.23"
-    ip_addr = "100.64.62.23"
+    name              = "100.64.62.23"
+    network_adapters  = []
+    active_nics       = []
+    standby_nics      = []
   },
   host4 = {
-    name = "100.64.62.24"
-    ip_addr = "100.64.62.24"
+    name              = "100.64.62.24"
+    network_adapters  = []
+    active_nics       = []
+    standby_nics      = []
   }
 }
 

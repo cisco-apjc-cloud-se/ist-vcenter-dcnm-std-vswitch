@@ -62,7 +62,9 @@ variable "vcenter_std_switch_name" {
 variable "cluster_hosts" {
   type = map(object({
     name = string
-    ip_addr = string
+    network_adapters = list(string)
+    active_nics = list(string)
+    standby_nics = list(string)
   }))
 }
 
