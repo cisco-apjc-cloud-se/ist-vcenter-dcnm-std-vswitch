@@ -31,6 +31,7 @@ data "vsphere_host" "hosts" {
 
 ### Build Local Dictionary ###
 locals {
+  total_index = count(var.cluster_hosts) * count(var.dcnm_networks)
   merged = flatten([
     for host_key, host in var.cluster_hosts : [
       for network_key, network in var.dcnm_networks : {
@@ -53,12 +54,12 @@ resource "vsphere_host_virtual_switch" "vswitch" {
 }
 
 
-resource "vsphere_host_port_group" "pg" {
-  for_each      = toset(local.merged)
-
-  name                = each.value["network_name"]
-  host_system_id      = data.vsphere_host.hosts[each.value["host_name"]].id
-  virtual_switch_name = var.vcenter_std_switch_name
-
-  depends_on = [vsphere_host_virtual_switch.vswitch]
-}
+# resource "vsphere_host_port_group" "pg" {
+#   for_each      = local.merged
+#
+#   name                = each.value["network_name"]
+#   host_system_id      = data.vsphere_host.hosts[each.value["host_name"]].id
+#   virtual_switch_name = var.vcenter_std_switch_name
+#
+#   depends_on = [vsphere_host_virtual_switch.vswitch]
+# }
