@@ -41,7 +41,11 @@ locals {
       }
     ]
   ])
-  merged = {for idx, val in local.flatlist: idx => val}
+  # merged = {for idx, val in local.flatlist: idx => val}
+  merged = {
+    for val in local.flatlist:
+      format("%s-%s", val["host_key"], val["network_name"]) => val
+  }
 }
 
 ### Build Standard vSwitches ###
