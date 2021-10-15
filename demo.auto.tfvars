@@ -63,19 +63,19 @@ vcenter_std_switch_name = "IST-STDVSW"
 
 ### Which hosts make up the cluster ###
 cluster_hosts = {
-  100.64.62.21 = {
+  host1 = {
     name = "100.64.62.21"
     ip_addr = "100.64.62.21"
   },
-  100.64.62.22 = {
+  host2 = {
     name = "100.64.62.22"
     ip_addr = "100.64.62.22"
   },
-  100.64.62.23 = {
+  host3 = {
     name = "100.64.62.23"
     ip_addr = "100.64.62.23"
   },
-  100.64.62.24 = {
+  host4 = {
     name = "100.64.62.24"
     ip_addr = "100.64.62.24"
   }
