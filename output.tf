@@ -7,3 +7,8 @@ output "networks" {
   value = module.dcnm.networks
   sensitive = false
 }
+
+output "hosts" {
+  value = module.vcenter.hosts
+  sensitive = false
+}
