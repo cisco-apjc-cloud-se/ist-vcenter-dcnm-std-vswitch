@@ -1,4 +1,3 @@
-
 ### DCNM DETAILS ###
 dcnm_fabric             = "DC3"
 dcnm_vrf                = "GUI-VRF-1"
