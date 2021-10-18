@@ -1,7 +1,7 @@
 # Intersight Service for Terraform Demo - Basic DCN & VMware Networking Automation using Standard vSwitches
 
 ## Overview
-This is a alternate version of the “Basic DCN & VMware Networking Automation” use case that focuses solely on DCNM and vCenter networking automation, specifically the automation of a DCNM-based VXLAN EVPN fabric connecting to a VMware ESXi cluster where using a Distributed Virutal Switch is not possible.  This may be due to licensing constraints as the DVS function is only available with the VMware Enterprise Plus level of ESXi licensing.
+This is an alternate version of the “Basic DCN & VMware Networking Automation” use case that focuses solely on DCNM and vCenter networking automation, specifically the automation of a DCNM-based VXLAN EVPN fabric connecting to a VMware ESXi cluster where using a Distributed Virutal Switch is not possible.  This may be due to licensing constraints as the DVS function is only available with the VMware Enterprise Plus level of ESXi licensing.
 
 This example will create the following:
 - A dedicated vPC interface for each host in the cluster
