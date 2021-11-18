@@ -129,5 +129,13 @@ cluster_networks = {
     vni_id      = 33113
     vlan_id     = 3113
     deploy      = true
+  },
+  IST-STDNET-3 = {
+    name        = "IST-STDNET-3"
+    description = "Terraform Standard vSwitch Network #3"
+    ip_subnet   = "192.168.23.1/24"
+    vni_id      = 33114
+    vlan_id     = 3114
+    deploy      = true
   }
 }
